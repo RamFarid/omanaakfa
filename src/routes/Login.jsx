@@ -3,7 +3,6 @@ import { useContext, useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import Header from '../components/Header'
 import sky from '../assets/sky-bg.jpg'
 import deep from '../assets/deep-bg.jpg'
 import { ThemeContext } from '../contexts/ThemeContext'
@@ -52,7 +51,6 @@ function Login() {
         backgroundImage: `url("${theme === 'light' ? sky : deep}")`,
       }}
     >
-      <Header />
       <Box
         width='100%'
         height={'calc(100% - 76px)'}

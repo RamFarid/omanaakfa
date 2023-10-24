@@ -8,7 +8,6 @@ import {
 import { useContext, useEffect, useMemo } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import HomeLayout from './routes/HomeLayout'
-import Home from './routes/Home'
 import Score from './routes/Score'
 import Login from './routes/Login'
 import UserContextProvider from './contexts/UserContext'
@@ -109,14 +108,6 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route element={<HomeLayout />} path='/'>
-              <Route
-                element={
-                  <ErrorBoundary>
-                    <Home />
-                  </ErrorBoundary>
-                }
-                index
-              />
               <Route
                 element={
                   <ErrorBoundary>

@@ -62,7 +62,7 @@ function UploadPopup({ isPopup, closePopup }) {
         return tracker
       })
       const res = await Promise.all(imgsPromises)
-      toast.success('الصور الأن على السحابة')
+      toast.success('تم رفع الصور بنجاح')
       setFiles([])
       setImgsLink([])
       // setUploadState([])

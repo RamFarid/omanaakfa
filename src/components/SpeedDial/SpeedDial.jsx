@@ -1,24 +1,22 @@
-import { IconButton } from '@mui/material'
+import { Button } from '@mui/material'
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 import { Link } from 'react-router-dom'
 
 function SpeedDial() {
   return (
     <>
-      <IconButton
+      <Button
         LinkComponent={Link}
         to='https://www.omanaakfa.com'
-        size='large'
+        size='small'
+        fullWidth
         target='_blank'
-        sx={(t) => ({
-          position: 'fixed',
-          bgcolor: t.palette.primary.main,
-          bottom: '30px',
-          right: '20px',
-        })}
+        sx={{ gap: 1, mb: 3 }}
+        variant='outlined'
+        endIcon={<OpenInBrowserIcon />}
       >
-        <OpenInBrowserIcon />
-      </IconButton>
+        العودة للصفحة الرئيسية
+      </Button>
     </>
   )
 }
