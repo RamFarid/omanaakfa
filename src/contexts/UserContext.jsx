@@ -15,6 +15,7 @@ function UserContextProvider({ children }) {
   const [online, setOnline] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
+    // eslint-disable-next-line no-extra-semi
     ;(async () => {
       try {
         if (creds) {
@@ -76,10 +77,12 @@ function UserContextProvider({ children }) {
             sx={{ outline: 'none' }}
             justifyContent={'center'}
             alignItems={'center'}
+            gap={2}
           >
             <Box
               maxWidth={'400px'}
               component={'img'}
+              borderRadius={'7px'}
               sx={{
                 animation: 'infinite fade 1s',
                 '@keyframes fade': {
@@ -91,7 +94,7 @@ function UserContextProvider({ children }) {
                   },
                 },
               }}
-              src='/android-chrome-512x512.png'
+              src='/LOGO.jpg'
             />
             <CircularProgress />
           </Stack>

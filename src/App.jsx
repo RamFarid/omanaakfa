@@ -22,6 +22,7 @@ import Dashboard from './routes/Dashboard'
 import DashboardLayout from './routes/DashboardLayout'
 import Gallery from './routes/Gallery'
 import 'react-photo-view/dist/react-photo-view.css'
+import Home from './routes/Home'
 
 function App() {
   const [theme] = useContext(ThemeContext)
@@ -131,6 +132,14 @@ function App() {
                   </ErrorBoundary>
                 }
                 path='/gallery'
+              />
+              <Route
+                element={
+                  <ErrorBoundary>
+                    <Home />
+                  </ErrorBoundary>
+                }
+                index
               />
               <Route element={<DashboardLayout />}>
                 <Route

@@ -8,12 +8,13 @@ function SpeedDial() {
       <Button
         LinkComponent={Link}
         to='https://www.omanaakfa.com'
-        size='small'
+        size='large'
         fullWidth
         target='_blank'
         sx={{ gap: 1, mb: 3 }}
-        variant='outlined'
         endIcon={<OpenInBrowserIcon />}
+        variant='contained'
+        disableElevation
       >
         العودة للصفحة الرئيسية
       </Button>

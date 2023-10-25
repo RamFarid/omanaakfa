@@ -1,11 +1,8 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import sky from '../assets/sky-bg.jpg'
-import deep from '../assets/deep-bg.jpg'
-import { ThemeContext } from '../contexts/ThemeContext'
 import axios from '../lib/axios'
 
 function Login() {
@@ -15,7 +12,6 @@ function Login() {
   const [error, setError] = useState('')
   const { setCreds, creds } = useUser()
   const [searchParams] = useSearchParams()
-  const [theme] = useContext(ThemeContext)
   const nextDestination = searchParams.get('next')
   if (creds) return <Navigate to='/' replace />
 
@@ -30,7 +26,7 @@ function Login() {
       toast.success(data.message)
       localStorage.setItem('creds', data.data)
       setCreds(userPassword)
-      redirect(nextDestination ? `/${nextDestination}` : '/')
+      redirect(nextDestination ? `/${nextDestination}` : '/dashboard')
     } catch (error) {
       toast.error(
         error.message === `Failed to fetch`
@@ -42,31 +38,17 @@ function Login() {
     }
   }
   return (
-    <Box
-      width='100%'
-      height={'100vh'}
-      sx={{
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100% 100%',
-        backgroundImage: `url("${theme === 'light' ? sky : deep}")`,
-      }}
-    >
+    <Box width='100%' height={'100vh'}>
       <Box
         width='100%'
         height={'calc(100% - 76px)'}
         display={'flex'}
         justifyContent={'center'}
         alignItems={'center'}
-        sx={{
-          background: 'rgba(0, 0, 0, 25%)',
-          borderRadius: 2,
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-          backdropFilter: 'blur(10.5px)',
-        }}
       >
         <Stack
           component={'form'}
-          border={'3px solid #ddd'}
+          border={(t) => `3px solid ${t.palette.text.primary}`}
           width={'87%'}
           maxWidth={'370px'}
           borderRadius={'32px'}
@@ -78,31 +60,16 @@ function Login() {
             variant='h4'
             mx={'auto'}
             borderRadius={'60px'}
-            border={'3px solid #ddd'}
+            border={(t) => `3px solid ${t.palette.text.primary}`}
             px={2}
             py={1}
             mb={'30px'}
             bgcolor='transparent'
-            color='#ddd'
           >
-            أنت إداري؟
+            تسجيل دخول
           </Typography>
           <TextField
             autoComplete='off'
-            sx={{
-              direction: 'ltr',
-              mb: 2,
-              color: '#fff',
-              '& input': {
-                color: '#ddd',
-              },
-              '& fieldset': {
-                border: '1px solid #ddd',
-              },
-              '&:hover fieldset': {
-                borderColor: '#ddd !important',
-              },
-            }}
             required
             type='text'
             size='small'

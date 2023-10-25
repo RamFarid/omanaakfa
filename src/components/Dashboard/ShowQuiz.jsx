@@ -1,9 +1,9 @@
-import { Button, Pagination, Stack, Typography } from '@mui/material'
+import { Button, Chip, Pagination, Stack, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 
-function ShowQuiz({ quiz, back }) {
+function ShowQuiz({ quiz, back, members }) {
   const [questionShown, setQuestionShown] = useState(1)
   return (
     <>
@@ -45,6 +45,20 @@ function ShowQuiz({ quiz, back }) {
           - {ch.choice} {ch.correct && <CheckIcon />}
         </Typography>
       ))}
+      <Typography
+        component={'h5'}
+        fontWeight={600}
+        fontSize={12}
+        mt={3}
+        mb={0.7}
+      >
+        أعضاء لسه مختُبيروش:{' '}
+      </Typography>
+      <Stack gap={1.1} direction={'row'} flexWrap={'wrap'}>
+        {members?.map((member) => (
+          <Chip key={member._id} label={<>{member.name}</>} />
+        ))}
+      </Stack>
       <Stack spacing={1} mt={3}>
         <Pagination
           page={questionShown}
@@ -61,6 +75,7 @@ function ShowQuiz({ quiz, back }) {
 ShowQuiz.propTypes = {
   quiz: PropTypes.object,
   back: PropTypes.func,
+  members: PropTypes.array,
 }
 
 export default ShowQuiz

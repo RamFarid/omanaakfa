@@ -19,10 +19,10 @@ function Dashboard() {
     // eslint-disable-next-line no-extra-semi
     ;(async () => {
       setPageState((pre) => ({ ...pre, isQuizLoading: true }))
-      const { data } = await axios.get('/quizzes')
+      const { data } = await axios.get('/members/waiting-members')
       setPageState((pre) => ({ ...pre, isQuizLoading: false }))
       if (!data.success) return toast.error(data.message)
-      setQuizzes(data.quizzes)
+      setQuizzes(data.data)
     })()
   }, [])
 
@@ -83,7 +83,15 @@ function Dashboard() {
       ) : (
         <>
           {targetQuiz ? (
-            <ShowQuiz quiz={targetQuiz} back={returnToCards} />
+            <ShowQuiz
+              quiz={targetQuiz}
+              back={returnToCards}
+              members={
+                quizzes.find((t) => {
+                  return targetQuiz._id === t._id
+                })?.members || []
+              }
+            />
           ) : (
             <QuizCards
               showQuiz={showQuiz}

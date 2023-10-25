@@ -192,12 +192,10 @@ function Quiz() {
   ) : (
     <>
       <Stack
-        position='sticky'
         sx={(t) => ({
           width: '100%',
           zIndex: 3,
           bgcolor: t.palette.background.default,
-          top: '74px',
           flexDirection: 'row',
           py: 1,
           alignItems: 'center',

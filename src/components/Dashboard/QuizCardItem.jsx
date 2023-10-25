@@ -8,6 +8,7 @@ function QuizCardItem({
   showQuiz,
   updateActiveQuiz,
   isSavingLoading,
+  members,
 }) {
   return (
     <Grid item xs={6} sx={{ position: 'relative' }}>
@@ -44,14 +45,23 @@ function QuizCardItem({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            flexDirection: 'column',
             border: active
               ? `${t.palette.success.main} solid 3px`
               : `solid 1px ${t.palette.divider}`,
             color: active ? t.palette.success.main : t.palette.text.primary,
           })}
         >
-          <Typography component={'h4'} variant='h6' fontWeight={400}>
+          <Typography component={'h4'} variant='h6' fontWeight={700}>
             {title}
+          </Typography>
+          <Typography
+            component={'span'}
+            align='center'
+            variant='body1'
+            fontWeight={400}
+          >
+            متبقي {members?.length}
           </Typography>
         </Paper>
       </ButtonBase>
@@ -66,6 +76,7 @@ QuizCardItem.propTypes = {
   showQuiz: PropTypes.func,
   isSavingLoading: PropTypes.bool,
   updateActiveQuiz: PropTypes.func,
+  members: PropTypes.array,
 }
 
 export default QuizCardItem

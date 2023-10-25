@@ -49,7 +49,7 @@ function Examiner({ currentUser, setCurrentUser, quizID }) {
         <TextField
           helperText='أتاكد من أسمك و من كنيستك كويس'
           {...params}
-          label='اختار اسمك'
+          label='أكتب أسمك الأول'
           variant='outlined'
           fullWidth
           InputProps={{
