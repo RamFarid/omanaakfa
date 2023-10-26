@@ -1,6 +1,8 @@
 import { Button, Link, Stack } from '@mui/material'
 import SpeedDial from '../components/SpeedDial/SpeedDial'
+import { useUser } from '../contexts/UserContext'
 function Home() {
+  const { logOut, creds } = useUser()
   return (
     <Stack justifyContent={'center'} height={'87vh'} gap={3}>
       <SpeedDial />
@@ -9,7 +11,7 @@ function Home() {
         disableElevation
         size='small'
         LinkComponent={Link}
-        href='https://www.omanaakfa.com/%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A7%D8%AA/%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A9'
+        href='https://www.omanaakfa.com/quizes/quiz'
       >
         المسابقات
       </Button>
@@ -18,7 +20,7 @@ function Home() {
         disableElevation
         size='small'
         LinkComponent={Link}
-        href='https://www.omanaakfa.com/%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A7%D8%AA/%D8%A7%D9%84%D9%86%D8%AA%D9%8A%D8%AC%D8%A9'
+        href='https://www.omanaakfa.com/quizes/score'
       >
         النتايج
       </Button>
@@ -27,10 +29,15 @@ function Home() {
         disableElevation
         size='small'
         LinkComponent={Link}
-        href='https://www.omanaakfa.com/%D8%A7%D9%84%D8%B5%D9%88%D8%B1'
+        href='https://www.omanaakfa.com/gallery'
       >
         معرض الصور
       </Button>
+      {creds && (
+        <Button disableElevation size='small' color='error' onClick={logOut}>
+          تسجيل خروج
+        </Button>
+      )}
     </Stack>
   )
 }

@@ -66,7 +66,7 @@ function GroupTable() {
               }}
               columns={4}
               actoionText={'ضيف مجموعه'}
-              txt='المجــــــامـيـــــع'
+              txt='المجموعــات'
             />
             <TableRow>
               <CustomCell>ت</CustomCell>

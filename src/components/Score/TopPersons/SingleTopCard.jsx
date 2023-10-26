@@ -1,5 +1,4 @@
 import { Avatar, Box, Stack, Typography } from '@mui/material'
-import minimalString from '../../../utils/minimalString'
 import goldMedal from '../../../assets/gold-medal.svg'
 import silverMedal from '../../../assets/medal-silver.svg'
 import bronzeMedal from '../../../assets/medal-bronze.svg'
@@ -71,7 +70,7 @@ function SingleTopCard({ person: { name, points, church }, i }) {
               // position: 'absolute',
             }}
           >
-            {minimalString(name)}
+            {name.split(' ')[0]}
           </Avatar>
         </Box>
       </Stack>

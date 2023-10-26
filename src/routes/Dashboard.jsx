@@ -41,7 +41,9 @@ function Dashboard() {
   const updateActiveQuiz = async (targetID) => {
     try {
       setPageState((p) => ({ ...p, isSavingLoading: true }))
-      const { data } = await axios.put(`/quizzes/${targetID}/active`)
+      const { data } = await axios.put(`/quizzes/${targetID}/active`, {
+        currentValue: quizzes.find((r) => r._id === targetID)?.active,
+      })
       setPageState((p) => ({ ...p, isSavingLoading: false }))
       if (!data.success) return toast.error(data.message)
       const updatedQuizs = quizzes.reduce((pre, current) => {

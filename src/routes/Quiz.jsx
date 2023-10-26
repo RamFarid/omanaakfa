@@ -19,6 +19,8 @@ import axios from '../lib/axios'
 import Examiner from '../components/Quiz/Examiner'
 import { toast } from 'react-toastify'
 import PageLoader from '../components/PageLoader'
+import NoActiveQuiz from '../components/Quiz/NoActiveQuiz'
+import EnsureSubmit from '../components/Quiz/EnsureSubmit'
 
 function Quiz() {
   const [questionShown, setQuestionShown] = useState(1)
@@ -26,9 +28,11 @@ function Quiz() {
   const [showAnswers, setShowAnswers] = useState(false)
   const [currentUser, setCurrentUser] = useState(null)
   const [degree, setDegree] = useState(0)
+  const [isEnsure, setIsEnsure] = useState(false)
   const [pageState, setPageState] = useState({
     message: '',
     isLoading: true,
+    code: '',
   })
   useEffect(() => {
     // eslint-disable-next-line no-extra-semi
@@ -36,15 +40,25 @@ function Quiz() {
       if (showAnswers) return
       try {
         setPageState({
+          code: '',
           message: '',
           isLoading: true,
         })
         const { data } = await axios.get('/quizzes/active')
-        if (data.success) setActiveQuiz(data.data)
-        setPageState({
-          message: !data.data.success ? data.data.message : '',
-          isLoading: false,
-        })
+        if (data?.success) setActiveQuiz(data?.data)
+        if (data?.code === 'NO_ACTIVE_QUIZ') {
+          setPageState({
+            code: 'NO_ACTIVE_QUIZ',
+            message: 'مفيش كويزات في الوقت الحالي',
+            isLoading: false,
+          })
+        } else {
+          setPageState((p) => ({
+            ...p,
+            message: !data.success ? data.message : '',
+            isLoading: false,
+          }))
+        }
       } catch (error) {
         toast.error(error.message)
         setPageState({
@@ -167,6 +181,7 @@ function Quiz() {
       toast.error(error.message)
     } finally {
       setPageState({ isLoading: false, message: '' })
+      setIsEnsure(false)
     }
   }
 
@@ -180,11 +195,13 @@ function Quiz() {
         return false
       }
     })
-    return `${answeredQuestions?.length}/${activeQuiz?.questions?.length}`
+    return answeredQuestions?.length
   }
 
   return pageState.isLoading ? (
     <PageLoader />
+  ) : pageState.code === 'NO_ACTIVE_QUIZ' ? (
+    <NoActiveQuiz />
   ) : pageState.message ? (
     <Typography align='center' variant='h4' component={'h2'} color={'error'}>
       {pageState.message}
@@ -205,7 +222,17 @@ function Quiz() {
         })}
       >
         {currentUser || Object.keys(currentUser || {}).length > 0 ? (
-          <Button variant='contained' disableElevation onClick={submitQuiz}>
+          <Button
+            variant='contained'
+            disableElevation
+            onClick={() => {
+              if (activeQuiz?.questions?.length - +solvedNoShown()) {
+                setIsEnsure(true)
+              } else {
+                submitQuiz()
+              }
+            }}
+          >
             انهاء
           </Button>
         ) : null}
@@ -222,7 +249,7 @@ function Quiz() {
         >
           {showAnswers
             ? `النتيجه: ${degree}/${activeQuiz?.questions?.length}`
-            : solvedNoShown()}
+            : `${solvedNoShown()}/${activeQuiz?.questions?.length}`}
         </Typography>
       </Stack>
       <Examiner
@@ -272,6 +299,14 @@ function Quiz() {
           </Box>
         </>
       ) : null}
+      <EnsureSubmit
+        open={
+          isEnsure && Boolean(activeQuiz?.questions?.length - +solvedNoShown())
+        }
+        remainsQuestions={activeQuiz?.questions?.length - +solvedNoShown()}
+        onSubmit={submitQuiz}
+        onClose={() => setIsEnsure(false)}
+      />
     </>
   )
 }

@@ -45,21 +45,7 @@ function ShowQuiz({ quiz, back, members }) {
           - {ch.choice} {ch.correct && <CheckIcon />}
         </Typography>
       ))}
-      <Typography
-        component={'h5'}
-        fontWeight={600}
-        fontSize={12}
-        mt={3}
-        mb={0.7}
-      >
-        أعضاء لسه مختُبيروش:{' '}
-      </Typography>
-      <Stack gap={1.1} direction={'row'} flexWrap={'wrap'}>
-        {members?.map((member) => (
-          <Chip key={member._id} label={<>{member.name}</>} />
-        ))}
-      </Stack>
-      <Stack spacing={1} mt={3}>
+      <Stack spacing={1} mt={3} alignItems={'center'}>
         <Pagination
           page={questionShown}
           color='primary'
@@ -67,6 +53,20 @@ function ShowQuiz({ quiz, back, members }) {
           sx={{ direction: 'ltr' }}
           onChange={(_e, page) => setQuestionShown(page)}
         />
+      </Stack>
+      <Typography
+        component={'h5'}
+        fontWeight={600}
+        fontSize={12}
+        mt={3}
+        mb={0.7}
+      >
+        أعضاء لسه محلوش:{' '}
+      </Typography>
+      <Stack gap={1.1} direction={'row'} flexWrap={'wrap'}>
+        {members?.map((member) => (
+          <Chip key={member._id} label={<>{member.name}</>} />
+        ))}
       </Stack>
     </>
   )

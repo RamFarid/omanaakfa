@@ -24,6 +24,9 @@ function Login() {
       })
       if (!data.success) return setError(data.message)
       toast.success(data.message)
+      axios.defaults.headers = {
+        Authorization: data.data,
+      }
       localStorage.setItem('creds', data.data)
       setCreds(userPassword)
       redirect(nextDestination ? `/${nextDestination}` : '/dashboard')
