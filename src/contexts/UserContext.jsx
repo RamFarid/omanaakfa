@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Box, CircularProgress, Modal, Stack } from '@mui/material'
+import { CircularProgress, Modal, Stack } from '@mui/material'
 import axios from '../lib/axios'
 
 const UserContext = createContext()
@@ -79,23 +79,6 @@ function UserContextProvider({ children }) {
             alignItems={'center'}
             gap={2}
           >
-            <Box
-              maxWidth={'400px'}
-              component={'img'}
-              borderRadius={'7px'}
-              sx={{
-                animation: 'infinite fade 1s',
-                '@keyframes fade': {
-                  from: {
-                    opacity: 0,
-                  },
-                  to: {
-                    opacity: 1,
-                  },
-                },
-              }}
-              src='/LOGO.jpg'
-            />
             <CircularProgress />
           </Stack>
         </Modal>
