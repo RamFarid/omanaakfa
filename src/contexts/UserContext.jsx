@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { CircularProgress, Modal, Stack } from '@mui/material'
+import { CircularProgress, Stack } from '@mui/material'
 import axios from '../lib/axios'
 
 const UserContext = createContext()
@@ -62,14 +62,14 @@ function UserContextProvider({ children }) {
   return (
     <UserContext.Provider value={{ creds, setCreds, online, logOut }}>
       {isLoading ? (
-        <Modal
-          open={true}
+        <Stack
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             border: 'none !important',
             outline: 'none !important',
+            height: '93vh',
           }}
         >
           <Stack
@@ -81,7 +81,7 @@ function UserContextProvider({ children }) {
           >
             <CircularProgress />
           </Stack>
-        </Modal>
+        </Stack>
       ) : (
         children
       )}

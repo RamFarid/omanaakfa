@@ -8,8 +8,13 @@ function NoActiveQuiz() {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      <QuizIcon sx={{ width: '130px', height: '130px' }} />
-      <Typography component={'h1'} variant='h4' align='center'>
+      <QuizIcon sx={{ width: '130px', height: '130px' }} color='primary' />
+      <Typography
+        component={'h1'}
+        variant='h4'
+        align='center'
+        color={'primary'}
+      >
         لا يوجد مسابقات مفتوحة في الوقت الحالي
       </Typography>
     </Stack>
