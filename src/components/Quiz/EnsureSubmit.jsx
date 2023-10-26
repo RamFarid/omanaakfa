@@ -10,10 +10,11 @@ import PropTypes from 'prop-types'
 function EnsureSubmit({ open, remainsQuestions, onClose, onSubmit }) {
   return (
     <Dialog open={open} sx={{ direction: 'rtl' }} onClose={onClose}>
-      <DialogTitle color={'error'}>أنت متأكد؟</DialogTitle>
+      <DialogTitle color={'error'}>يوجد اسالة بدون اجابة</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          في {remainsQuestions} سؤال أنت محلتهمش. هتسلم و أنت مش حاللهم؟
+          يوجد {remainsQuestions} أسالة لم تقم بحلها. هل ترغب في إرسال الاجابات
+          بالوضع الحالي؟
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -21,7 +22,7 @@ function EnsureSubmit({ open, remainsQuestions, onClose, onSubmit }) {
           إلغاء
         </Button>
         <Button color='primary' onClick={onSubmit}>
-          تسليم
+          إرسال
         </Button>
       </DialogActions>
     </Dialog>

@@ -8,12 +8,9 @@ function NoActiveQuiz() {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      <QuizIcon sx={{ width: '130px', height: '130px' }} color='success' />
-      <Typography component={'h1'} variant='h4' color={'success.main'}>
-        فارغ!
-      </Typography>
-      <Typography component={'div'} variant='body1'>
-        مفيش اختبارات في الوقت الحالي
+      <QuizIcon sx={{ width: '130px', height: '130px' }} />
+      <Typography component={'h1'} variant='h4' align='center'>
+        لا يوجد مسابقات مفتوحة في الوقت الحالي
       </Typography>
     </Stack>
   )

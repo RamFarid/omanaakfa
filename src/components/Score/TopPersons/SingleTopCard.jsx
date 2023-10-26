@@ -14,7 +14,7 @@ function SingleTopCard({ person: { name, points, church }, i }) {
       px={1}
       zIndex={i === 1 ? 2 : 'unset'}
       flex={1}
-      bgcolor={'#BEBAA7'}
+      bgcolor={'primary.main'}
       borderRadius={'100px 100px 0 0'}
       maxWidth={'121px'}
       alignItems={'center'}
@@ -41,7 +41,7 @@ function SingleTopCard({ person: { name, points, church }, i }) {
         </Typography>
 
         <Box
-          bgcolor={'#BEBAA7'}
+          bgcolor={'primary.light'}
           borderRadius={'50%'}
           p={1}
           boxShadow={4}
@@ -67,7 +67,7 @@ function SingleTopCard({ person: { name, points, church }, i }) {
               width: '120px',
               height: '120px',
               fontSize: '40px',
-              // position: 'absolute',
+              bgcolor: 'primary.main',
             }}
           >
             {name.split(' ')[0]}
